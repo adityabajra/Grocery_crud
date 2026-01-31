@@ -1,10 +1,16 @@
 var items = groceryItems;
+var editId = null;
 
 function render() {
   var $app = $("#app");
   $app.empty();
 
-  var $formElement = createForm();
+  var itemToEdit = editId
+    ? $.grep(items, function (item) {
+        return item.id === editId;
+      })[0]
+    : null;
+  var $formElement = createForm(editId, itemToEdit);
   $app.append($formElement);
   var $itemsElement = createItems(items);
   $app.append($itemsElement);
@@ -44,5 +50,18 @@ function removeItem(itemId) {
   render();
   setTimeout(function () {
     alert("Item Deleted Successfully!");
+  }, 0);
+}
+function updateItemName(newName) {
+  items = $.map(items, function (item) {
+    if (item.id === editId) {
+      return $.extend({}, item, { name: newName });
+    }
+    return item;
+  });
+  editId = null;
+  render();
+  setTimeout(function () {
+    alert("Item Updated Successfully!");
   }, 0);
 }

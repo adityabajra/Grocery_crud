@@ -1,4 +1,4 @@
-function createForm() {
+function createForm(editId, itemToEdit) {
   var $form = $("<form></form>");
 
   $form.html(`
@@ -7,10 +7,11 @@ function createForm() {
       <input
         type="text"
         class="form-input"
-        placeholder="e.g. eggs"
+        placeholder="e.g. hams"
+        value="${itemToEdit ? itemToEdit.name : ""}"
       />
       <button type="submit" class="btn">
-        add item
+        ${editId ? "update item" : "add item"}
       </button>
     </div>
   `);
@@ -24,8 +25,12 @@ function createForm() {
       alert("Please provide value");
       return;
     }
+    if (editId) {
+      updateItemName(value);
+    } else {
+      addItem(value);
+    }
 
-    addItem(value);
     $input.val("");
   });
 
