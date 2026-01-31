@@ -12,8 +12,9 @@ function render() {
       })[0]
     : null;
   var $formElement = createForm(editId, itemToEdit);
-  $app.append($formElement);
+
   var $itemsElement = createItems(items);
+  $app.append($formElement);
   $app.append($itemsElement);
 }
 
@@ -70,7 +71,13 @@ function getLocalStorage() {
   }
   return [];
 }
-
+function setEditId(itemId) {
+  editId = itemId;
+  render();
+  setTimeout(function () {
+    $(".form-input").focus();
+  }, 0);
+}
 function setLocalStorage(itemsArray) {
   localStorage.setItem("grocery-list", JSON.stringify(itemsArray));
 }
