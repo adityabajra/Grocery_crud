@@ -1,6 +1,6 @@
 ﻿# Grocery_crud
 
-Grocery Bud
+Grocery Bud:
 A simple shopping list application.
 
 Description:
@@ -14,4 +14,5 @@ File Structure
 index.html: Main page.
 css/: Styles for the hero background, form, and items.
 js/: Application logic and data handling.
+
 
